@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cf0mlbin7srfu"]
+
+[ext_resource type="PackedScene" uid="uid://dnrespatkrum5" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bitqp1o8xklk7" path="res://Scenes/health.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bw7y3wlpi4v7p" path="res://Scenes/enemy.tscn" id="3_8gbba"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+normal = Vector2(-1, 0)
+
+[node name="Main" type="Node2D" unique_id=2106804261]
+
+[node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
+position = Vector2(81, 50)
+speed = null
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
+position = Vector2(192, 108)
+zoom = Vector2(2, 2)
+
+[node name="Borders" type="Node" parent="." unique_id=1804375532]
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders" unique_id=310400244]
+position = Vector2(-97, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=1922016043]
+shape = SubResource("WorldBoundaryShape2D_jjgbg")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=889192180]
+position = Vector2(482, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
+position = Vector2(185, -55)
+rotation = -1.5699594
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=1616808717]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Borders/TopBorder" unique_id=2127226653]
+position = Vector2(-323.99902, 1.271166)
+rotation = 3.1394768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder/BottomBorder" unique_id=1271230540]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="PickUps" type="Node" parent="." unique_id=575340920]
+
+[node name="Health" parent="PickUps" unique_id=1254405215 instance=ExtResource("2_bo1nx")]
+position = Vector2(229, 104)
+
+[node name="fly" parent="." unique_id=223098687 instance=ExtResource("3_8gbba")]
+position = Vector2(230, 162)

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dnrespatkrum5"]
+
+[ext_resource type="Script" uid="uid://cwwqcnbwy6e2p" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://cnixhoe7nu148" path="res://Assets/boogie_man_idle.png" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dk260kpnjpe1f" path="res://Assets/boogie_man_walk.png" id="1_v0iea"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("1_cvnsp")
+region = Rect2(0, 0, 12, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("1_cvnsp")
+region = Rect2(12, 0, 12, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo1nx"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 0, 13, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gbba"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(13, 0, 13, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jjvhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo1nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gbba")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(10, 13)
+
+[node name="Player" type="CharacterBody2D" unique_id=1167191834]
+collision_layer = 2
+script = ExtResource("1_6t5aa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1611507406]
+sprite_frames = SubResource("SpriteFrames_jjvhh")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.77042884
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679252106]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_kry3j")

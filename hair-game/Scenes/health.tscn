@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bitqp1o8xklk7"]
+
+[ext_resource type="Texture2D" uid="uid://boe40kol61r55" path="res://Assets/health.png" id="1_1nx07"]
+[ext_resource type="Script" uid="uid://d3f6hakckuna5" path="res://Scripts/health.gd" id="1_aswr4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aswr4"]
+
+[node name="Health" type="Area2D" unique_id=1254405215]
+scale = Vector2(0.5199995, 0.5199995)
+collision_mask = 2
+script = ExtResource("1_aswr4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=786745706]
+texture = ExtResource("1_1nx07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=838832992]
+shape = SubResource("CircleShape2D_aswr4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

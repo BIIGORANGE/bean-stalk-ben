@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cf0mlbin7srfu"]
+
+[ext_resource type="PackedScene" uid="uid://dnrespatkrum5" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bitqp1o8xklk7" path="res://Scenes/health.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://cau8uexkqph0q" path="res://Scenes/node.gd" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://4l5slk7rda82" path="res://Scripts/game_manager.gd" id="4_jjvhh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+normal = Vector2(-1, 0)
+
+[node name="Main" type="Node2D" unique_id=2106804261]
+position = Vector2(-150, -121)
+
+[node name="GameManager" type="Node" parent="." unique_id=883448335]
+unique_name_in_owner = true
+script = ExtResource("4_jjvhh")
+
+[node name="RestartTimer" type="Timer" parent="GameManager" unique_id=838661758]
+wait_time = 0.3
+
+[node name="FlySpawnTimer" type="Timer" parent="GameManager" unique_id=1181786278]
+
+[node name="Node" type="Node" parent="GameManager" unique_id=1335975861]
+script = ExtResource("2_jjvhh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
+position = Vector2(191, 108)
+
+[node name="Borders" type="Node" parent="." unique_id=1804375532]
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders" unique_id=310400244]
+position = Vector2(-247, -121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=1922016043]
+position = Vector2(-288, 0)
+shape = SubResource("WorldBoundaryShape2D_jjgbg")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=889192180]
+position = Vector2(332, -122)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
+position = Vector2(284, 0)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
+position = Vector2(35, -176)
+rotation = -1.5699594
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=1616808717]
+position = Vector2(160.99994, -0.13474485)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Borders/TopBorder" unique_id=2127226653]
+position = Vector2(-323.99902, 1.271166)
+rotation = 3.1394768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder/BottomBorder" unique_id=1271230540]
+position = Vector2(162.99991, 0.20846933)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="PickUps" type="Node" parent="." unique_id=575340920]
+
+[node name="Health" parent="PickUps" unique_id=1254405215 instance=ExtResource("2_bo1nx")]
+position = Vector2(79, -17)
+
+[node name="FlySpawn1" type="Marker2D" parent="." unique_id=234040339]
+position = Vector2(599, -59)
+
+[node name="FlySpawn2" type="Marker2D" parent="." unique_id=404071212]
+position = Vector2(-256, 200)
+
+[node name="FlySpawn3" type="Marker2D" parent="." unique_id=1702682247]
+position = Vector2(432, 111)
+
+[node name="FlySpawn4" type="Marker2D" parent="." unique_id=124890683]
+position = Vector2(600, 345)
+
+[node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
+unique_name_in_owner = true
+speed = 200
+
+[connection signal="timeout" from="GameManager/RestartTimer" to="GameManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/FlySpawnTimer" to="GameManager" method="_on_fly_spawn_timer_timeout"]

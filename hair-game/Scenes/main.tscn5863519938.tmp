@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cf0mlbin7srfu"]
+
+[ext_resource type="PackedScene" uid="uid://dnrespatkrum5" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bitqp1o8xklk7" path="res://Scenes/health.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://4l5slk7rda82" path="res://Scripts/game_manager.gd" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cxn8y74g7ly3k" path="res://Scenes/fly.tscn" id="4_kry3j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_8gbba"]
+variation_embolden = 1.31
+spacing_glyph = 2
+
+[node name="Main" type="Node2D" unique_id=2106804261]
+
+[node name="GameManager" type="Node" parent="." unique_id=883448335]
+unique_name_in_owner = true
+script = ExtResource("4_jjvhh")
+
+[node name="Timer" type="Timer" parent="GameManager" unique_id=838661758]
+wait_time = 0.3
+
+[node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
+unique_name_in_owner = true
+position = Vector2(103, 118)
+speed = 200
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
+position = Vector2(192, 108)
+zoom = Vector2(2, 2)
+
+[node name="Borders" type="Node" parent="." unique_id=1804375532]
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders" unique_id=310400244]
+position = Vector2(-97, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=1922016043]
+shape = SubResource("WorldBoundaryShape2D_jjgbg")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=889192180]
+position = Vector2(482, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
+position = Vector2(185, -55)
+rotation = -1.5699594
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=1616808717]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Borders/TopBorder" unique_id=2127226653]
+position = Vector2(-323.99902, 1.271166)
+rotation = 3.1394768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder/BottomBorder" unique_id=1271230540]
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="PickUps" type="Node" parent="." unique_id=575340920]
+
+[node name="Health" parent="PickUps" unique_id=1254405215 instance=ExtResource("2_bo1nx")]
+position = Vector2(229, 104)
+
+[node name="Label" type="Label" parent="." unique_id=233721754]
+offset_left = 174.0
+offset_top = 22.0
+offset_right = 244.0
+offset_bottom = 62.0
+tooltip_text = "
+"
+theme_override_fonts/font = SubResource("FontVariation_8gbba")
+text = "kill those bugs boy"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=711081360]
+
+[node name="Fly" parent="." unique_id=1502015250 instance=ExtResource("4_kry3j")]
+position = Vector2(190, 159)
+rotation = 0.019456446
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cxn8y74g7ly3k"]
+
+[ext_resource type="Script" uid="uid://ct2731xpa0sjx" path="res://Scripts/fly.gd" id="1_3o03e"]
+[ext_resource type="PackedScene" uid="uid://cxm6nickop3uw" path="res://Scenes/kill_zone.tscn" id="1_qarim"]
+[ext_resource type="Texture2D" uid="uid://btxcyv036jgqg" path="res://Assets/enemy.png" id="2_7c42i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is5gm"]
+atlas = ExtResource("2_7c42i")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lis8o"]
+atlas = ExtResource("2_7c42i")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1calk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is5gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lis8o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cv6t"]
+radius = 3.1622777
+
+[node name="Fly" type="CharacterBody2D" unique_id=1502015250]
+script = ExtResource("1_3o03e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1553282803]
+sprite_frames = SubResource("SpriteFrames_1calk")
+
+[node name="KillZone" parent="." unique_id=2060245069 instance=ExtResource("1_qarim")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=510552353]
+shape = SubResource("CircleShape2D_6cv6t")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1694727559]
+target_position = Vector2(4, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1319602071]
+target_position = Vector2(-4, 0)
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=1087369564]
+target_position = Vector2(0, 4)
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=1471886128]
+target_position = Vector2(0, -4)
+
+[node name="RayCastUpRight" type="RayCast2D" parent="." unique_id=542482981]
+target_position = Vector2(4, -4)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="." unique_id=1896103296]
+target_position = Vector2(4, 4)
+
+[node name="RayCastUpLeft" type="RayCast2D" parent="." unique_id=1444330929]
+target_position = Vector2(-4, -4)
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="." unique_id=320852572]
+target_position = Vector2(-4, 4)
+
+[node name="Timer" type="Timer" parent="." unique_id=975876000]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
