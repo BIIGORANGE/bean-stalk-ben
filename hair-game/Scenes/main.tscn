@@ -66,18 +66,6 @@ shape = SubResource("WorldBoundaryShape2D_bo1nx")
 [node name="Health" parent="PickUps" unique_id=1254405215 instance=ExtResource("2_bo1nx")]
 position = Vector2(79, -17)
 
-[node name="FlySpawn1" type="Marker2D" parent="." unique_id=234040339]
-position = Vector2(599, -59)
-
-[node name="FlySpawn2" type="Marker2D" parent="." unique_id=404071212]
-position = Vector2(-256, 200)
-
-[node name="FlySpawn3" type="Marker2D" parent="." unique_id=1702682247]
-position = Vector2(432, 111)
-
-[node name="FlySpawn4" type="Marker2D" parent="." unique_id=124890683]
-position = Vector2(600, 345)
-
 [node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
 unique_name_in_owner = true
 speed = 200

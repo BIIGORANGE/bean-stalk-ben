@@ -1,17 +1,29 @@
 extends CharacterBody2D
-@export var speed = 300
+@export var speed = 250
 @onready var game_manager: Node = %GameManager
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-var health = 1
+var health = 3
+
+
+func change_height():
+	var height = health
+	var move_shape = collision_shape.shape.size.y/2
+	collision_shape.scale.y =  height * 1
+	collision_shape.position.y = move_shape
+	
 func _ready() -> void:
 	pass
+	
 func add_health():
+	change_height()
 	health = health + 1
 	print(health)
 
 func subtract_health():
+	change_height()
 	health -= 1
 	print(health)
 	if health == 0:
