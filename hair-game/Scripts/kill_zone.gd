@@ -7,5 +7,6 @@ func _on_body_entered(body: Node2D) -> void:
 		player.subtract_health()
 		
 func _on_area_entered(area: Area2D) -> void:
-	print("hit")
-	get_parent().subtract_health()
+	if area.is_in_group("player_bullet"):
+		print("hit")
+		get_parent().subtract_health()

@@ -16,15 +16,16 @@ func _ready():
 func start_spawn():
 	fly_spawn_timer.start()
 
-func drop_health_pickup():
-	var instance = health_pickup
-	instance.instantiate()
+func drop_health_pickup(pos: Vector2):
+	var instance = health_pickup.instantiate()
 	add_sibling(instance)
-
+	instance.global_position = pos
+	
 func random_spawn(entity):
 	var instance = entity.instantiate()
 	add_sibling(instance)
 	instance.position = Vector2(r_numberx,r_numbery)
+	instance.game_manager = self
 
 
 func _on_fly_spawn_timer_timeout() -> void:

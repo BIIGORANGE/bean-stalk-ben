@@ -1,10 +1,10 @@
 extends Area2D
 
-@onready var player: CharacterBody2D = %Player
+var player: CharacterBody2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == player:
-		player.add_health()
+	if body.is_in_group("player"):
+		body.add_health()
 		#removes scene from Main
 		queue_free()

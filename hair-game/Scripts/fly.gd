@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 50
+const SPEED = 90
 var health = 1
 
 @onready var fly: CharacterBody2D = $"."
 @onready var move_timer: Timer = $MoveTimer
 @onready var drop_timer: Timer = $DropTimer
-@onready var game_manager: Node = %GameManager
+var game_manager: Node
 @onready var health_pickup = preload("res://Scenes/health.tscn")
 var r_numberx = randi_range(-550, 925)
 var r_numbery = randi_range(-330,320)
@@ -33,7 +33,8 @@ func move(delta):
 	velocity = direction * SPEED
 
 func die():
-	game_manager.drop_health_pickup()
+	if game_manager:
+		game_manager.drop_health_pickup(global_position)
 	queue_free()
 	
 func subtract_health():
