@@ -5,9 +5,11 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
 normal = Vector2(1, 0)
+distance = -382.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
 normal = Vector2(-1, 0)
+distance = -215.00995
 
 [node name="Main" type="Node2D" unique_id=2106804261]
 position = Vector2(-150, -121)
@@ -21,6 +23,9 @@ wait_time = 0.3
 
 [node name="FlySpawnTimer" type="Timer" parent="GameManager" unique_id=1181786278]
 wait_time = 0.54
+
+[node name="BeetleSpawnTimer" type="Timer" parent="GameManager" unique_id=1364508864]
+wait_time = 2.072
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
 position = Vector2(191, 108)
@@ -38,7 +43,7 @@ shape = SubResource("WorldBoundaryShape2D_jjgbg")
 position = Vector2(332, -122)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
-position = Vector2(284, 0)
+position = Vector2(454, 0)
 shape = SubResource("WorldBoundaryShape2D_bo1nx")
 
 [node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
@@ -63,3 +68,4 @@ speed = 200
 
 [connection signal="timeout" from="GameManager/RestartTimer" to="GameManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameManager/FlySpawnTimer" to="GameManager" method="_on_fly_spawn_timer_timeout"]
+[connection signal="timeout" from="GameManager/BeetleSpawnTimer" to="GameManager" method="_on_beetle_spawn_timer_timeout"]

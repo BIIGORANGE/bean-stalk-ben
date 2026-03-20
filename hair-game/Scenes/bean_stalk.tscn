@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b4ul1ksjbr35i"]
+
+[ext_resource type="Texture2D" uid="uid://cwqql8bnmw848" path="res://Assets/bean_stalk.png" id="1_mfbeu"]
+
+[sub_resource type="GDScript" id="GDScript_mfbeu"]
+script/source = "extends Sprite2D
+	
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="BeanStalk" type="Sprite2D" unique_id=1516753122]
+scale = Vector2(0.15384614, 0.17708328)
+texture = ExtResource("1_mfbeu")
+script = SubResource("GDScript_mfbeu")

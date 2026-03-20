@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://gcmhlqprigf"]
+
+[ext_resource type="Script" uid="uid://1ihfpx03jl74" path="res://Scripts/enemy_bullet.gd" id="1_b6yqb"]
+[ext_resource type="Texture2D" uid="uid://bjtipgb55uvfu" path="res://Assets/bullet.png" id="2_b6yqb"]
+[ext_resource type="PackedScene" uid="uid://cxm6nickop3uw" path="res://Scenes/kill_zone.tscn" id="3_b6yqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36hc0"]
+size = Vector2(20, 6)
+
+[node name="EnemyBullet" type="Area2D" unique_id=686064506]
+scale = Vector2(0.9936105, 1)
+script = ExtResource("1_b6yqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=749093469]
+texture = ExtResource("2_b6yqb")
+
+[node name="KillZone" parent="." unique_id=2060245069 instance=ExtResource("3_b6yqb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=1566635566]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_36hc0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,10 +1,12 @@
 extends Node
 
+@onready var player: CharacterBody2D = %Player
+@onready var beetle_spawn_timer: Timer = $BeetleSpawnTimer
 @onready var restart_timer: Timer = $RestartTimer
 @onready var fly_spawn_timer: Timer = $FlySpawnTimer
 @onready var fly = preload("res://Scenes/fly.tscn")
-@onready var health_pickup = preload("uid://bitqp1o8xklk7")
-
+@onready var health_pickup = preload("res://Scenes/health.tscn")
+@onready var beetle = preload("res://Scenes/beetle.tscn")
 
 var r_numberx = randf_range(-550, 925)
 var r_numbery = randf_range(-320,300)
@@ -15,6 +17,7 @@ func _ready():
 
 func start_spawn():
 	fly_spawn_timer.start()
+	beetle_spawn_timer.start()
 
 func drop_health_pickup(pos: Vector2):
 	var instance = health_pickup.instantiate()
@@ -26,12 +29,18 @@ func random_spawn(entity):
 	add_sibling(instance)
 	instance.position = Vector2(r_numberx,r_numbery)
 	instance.game_manager = self
-
+	instance.player = player
 
 func _on_fly_spawn_timer_timeout() -> void:
 	r_numberx = randf_range(-600, 500)
 	r_numbery = randf_range(-300,300)
 	random_spawn(fly)
+	
+func _on_beetle_spawn_timer_timeout() -> void:
+	r_numberx = randf_range(-600, 500)
+	r_numbery = randf_range(-300,300)
+	random_spawn(beetle)
+
 
 func restart_game():
 	Engine.time_scale = 0.2

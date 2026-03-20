@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 90
 var health = 1
 
+var player
 @onready var fly: CharacterBody2D = $"."
 @onready var move_timer: Timer = $MoveTimer
 @onready var drop_timer: Timer = $DropTimer

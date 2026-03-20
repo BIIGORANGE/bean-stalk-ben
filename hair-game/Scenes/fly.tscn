@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6cv6t"]
 radius = 3.1622777
 
-[node name="Fly" type="CharacterBody2D" unique_id=1502015250]
+[node name="Fly" type="CharacterBody2D" unique_id=1502015250 groups=["enemy"]]
 collision_mask = 3
 script = ExtResource("1_3o03e")
 
@@ -27,5 +27,5 @@ wait_time = 2.0
 
 [node name="DropTimer" type="Timer" parent="." unique_id=1132620306]
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
