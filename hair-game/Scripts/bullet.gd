@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 1000
+var speed = 5000
 var velocity = Vector2.ZERO
 @onready var health_pickup = "res://Scenes/health.tscn"
 func _process(delta: float) -> void:

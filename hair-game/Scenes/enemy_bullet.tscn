@@ -1,23 +1,24 @@
 [gd_scene format=3 uid="uid://gcmhlqprigf"]
 
 [ext_resource type="Script" uid="uid://1ihfpx03jl74" path="res://Scripts/enemy_bullet.gd" id="1_b6yqb"]
-[ext_resource type="Texture2D" uid="uid://bjtipgb55uvfu" path="res://Assets/bullet.png" id="2_b6yqb"]
+[ext_resource type="Texture2D" uid="uid://coqj807v6knsi" path="res://Assets/death.png" id="2_b6yqb"]
 [ext_resource type="PackedScene" uid="uid://cxm6nickop3uw" path="res://Scenes/kill_zone.tscn" id="3_b6yqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36hc0"]
-size = Vector2(20, 6)
+size = Vector2(70, 21.886679)
 
 [node name="EnemyBullet" type="Area2D" unique_id=686064506]
-scale = Vector2(0.9936105, 1)
+scale = Vector2(1, 1.006)
 script = ExtResource("1_b6yqb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=749093469]
+scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_b6yqb")
 
 [node name="KillZone" parent="." unique_id=2060245069 instance=ExtResource("3_b6yqb")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=1566635566]
-position = Vector2(0, -1)
+position = Vector2(0, -3.9850895)
 shape = SubResource("RectangleShape2D_36hc0")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

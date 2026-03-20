@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 800
+var speed = 2000
 var velocity = Vector2.ZERO
 @onready var health_pickup = "res://Scenes/health.tscn"
 

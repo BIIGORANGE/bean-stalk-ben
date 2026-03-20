@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cf0mlbin7srfu"]
+
+[ext_resource type="PackedScene" uid="uid://dnrespatkrum5" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://mdhi2it5csf3" path="res://Assets/background.png" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://4l5slk7rda82" path="res://Scripts/game_manager.gd" id="4_jjvhh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
+normal = Vector2(1, 0)
+distance = -382.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+normal = Vector2(-1, 0)
+distance = -215.00995
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gbba"]
+texture = ExtResource("3_8gbba")
+
+[sub_resource type="TileSet" id="TileSet_jjvhh"]
+tile_size = Vector2i(58, 85)
+sources/0 = SubResource("TileSetAtlasSource_8gbba")
+
+[node name="Main" type="Node2D" unique_id=2106804261]
+position = Vector2(-150, -121)
+
+[node name="GameManager" type="Node" parent="." unique_id=883448335]
+unique_name_in_owner = true
+script = ExtResource("4_jjvhh")
+
+[node name="RestartTimer" type="Timer" parent="GameManager" unique_id=838661758]
+wait_time = 0.3
+
+[node name="FlySpawnTimer" type="Timer" parent="GameManager" unique_id=1181786278]
+wait_time = 0.54
+
+[node name="BeetleSpawnTimer" type="Timer" parent="GameManager" unique_id=1364508864]
+wait_time = 2.072
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
+position = Vector2(191, 108)
+
+[node name="Borders" type="Node" parent="." unique_id=1804375532]
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders" unique_id=310400244]
+position = Vector2(-247, -121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=1922016043]
+position = Vector2(-288, 0)
+shape = SubResource("WorldBoundaryShape2D_jjgbg")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=889192180]
+position = Vector2(332, -122)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
+position = Vector2(454, 0)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
+position = Vector2(35, -176)
+rotation = -1.5699594
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=1616808717]
+position = Vector2(160.99994, -0.13474485)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Borders/TopBorder" unique_id=2127226653]
+position = Vector2(-323.99902, 1.271166)
+rotation = 3.1394768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder/BottomBorder" unique_id=1271230540]
+position = Vector2(162.99991, 0.20846933)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
+unique_name_in_owner = true
+speed = 200
+
+[node name="TileMap" type="TileMap" parent="." unique_id=523349963]
+tile_set = SubResource("TileSet_jjvhh")
+format = 2
+
+[connection signal="timeout" from="GameManager/RestartTimer" to="GameManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/FlySpawnTimer" to="GameManager" method="_on_fly_spawn_timer_timeout"]
+[connection signal="timeout" from="GameManager/BeetleSpawnTimer" to="GameManager" method="_on_beetle_spawn_timer_timeout"]

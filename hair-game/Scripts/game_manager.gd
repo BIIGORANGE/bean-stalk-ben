@@ -8,9 +8,9 @@ extends Node
 @onready var health_pickup = preload("res://Scenes/health.tscn")
 @onready var beetle = preload("res://Scenes/beetle.tscn")
 
-var r_numberx = randf_range(-550, 925)
-var r_numbery = randf_range(-320,300)
-	
+var r_numberx = randf_range(-6300, 6400)
+var r_numbery = randf_range(-3500,3500)
+
 func _ready():
 	start_spawn()
 	randomize()
@@ -32,13 +32,13 @@ func random_spawn(entity):
 	instance.player = player
 
 func _on_fly_spawn_timer_timeout() -> void:
-	r_numberx = randf_range(-600, 500)
-	r_numbery = randf_range(-300,300)
+	r_numberx = randf_range(-6300, 6400)
+	r_numbery = randf_range(-3500,3500)
 	random_spawn(fly)
 	
 func _on_beetle_spawn_timer_timeout() -> void:
-	r_numberx = randf_range(-600, 500)
-	r_numbery = randf_range(-300,300)
+	r_numberx = randf_range(-6300, 6400)
+	r_numbery = randf_range(-3500,3500)
 	random_spawn(beetle)
 
 

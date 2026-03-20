@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@export var speed = 250
+@export var speed = 2500
 @onready var game_manager: Node = %GameManager
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -7,12 +7,13 @@ extends CharacterBody2D
 var stalk = preload("res://Scenes/bean_stalk.tscn")
 
 var health = 0
-var current_height = 18
+var current_height = 180
 
 func change_height():
 	var height = health
 	collision_shape.scale.y =  height
-	collision_shape.position.y = ((height * current_height)/2) * -1
+	collision_shape.position.y = (height * current_height/4) * -1
+	sprite.scale.y =  height
 	
 func _ready() -> void:
 	health += 1
@@ -22,16 +23,16 @@ func add_health():
 	health = health + 1
 	change_height()
 	print(health)
-	var stalk_instance = stalk.instantiate()
-	add_child(stalk_instance)
+	#var stalk_instance = stalk.instantiate()
+	#add_child(stalk_instance)
 
 func subtract_health():
 	health -= 1
-	var stalk_instance = stalk.instantiate()
+	#var stalk_instance = stalk.instantiate()
 	print(health)
 	change_height()
 	
-	remove_child(stalk_instance)
+	#remove_child(stalk_instance)
 	if health == 0:
 		#die
 		game_manager.restart_game()

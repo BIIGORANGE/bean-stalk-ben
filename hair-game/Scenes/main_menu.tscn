@@ -2,36 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://mdqyjc8ucmgl" path="res://Assets/logo.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://o4n2rxcs5jak" path="res://Scenes/main_menu.gd" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://sy5i5jgvsdmr" path="res://Assets/play_btn.png" id="3_1ehe0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
 bg_color = Color(0.6, 0.6, 0.6, 0.58431375)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
-bg_color = Color(0.1898537, 0.72046924, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 20
-shadow_color = Color(0, 0, 0, 0.5411765)
-shadow_size = 8
-shadow_offset = Vector2(5, 3)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
+texture = ExtResource("3_1ehe0")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0.14093566, 0.36982986, 0.12993114, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_size = 5
-shadow_offset = Vector2(5, 3)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n45e2"]
+texture = ExtResource("3_1ehe0")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
-bg_color = Color(0.34037527, 0.694679, 0.31568778, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ehe0"]
+texture = ExtResource("3_1ehe0")
+modulate_color = Color(0.16078432, 1, 0.6784314, 1)
 
 [node name="MainMenu" type="Control" unique_id=1035536316]
 layout_mode = 3
@@ -49,30 +33,34 @@ offset_bottom = 1085.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ehe0")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=960884667]
-layout_mode = 0
-offset_left = 179.0
-offset_top = -47.0
-offset_right = 1860.4663
-offset_bottom = 760.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1095.0
+offset_top = 32.0
+offset_right = 888.7622
+offset_bottom = 984.0833
+grow_horizontal = 0
+scale = Vector2(0.48000002, 0.48000002)
 texture = ExtResource("1_28flt")
 
-[node name="Button" type="Button" parent="." unique_id=445876280]
+[node name="Button" type="Button" parent="." unique_id=575427804]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = 49.0
-offset_right = 258.20007
-offset_bottom = 173.0
-grow_horizontal = 2
+offset_left = -1011.0
+offset_top = 20.0
+offset_right = 494.214
+offset_bottom = 593.51953
+grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 66
-theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_48xlc")
-text = "Start Game"
+scale = Vector2(0.48000002, 0.48472625)
+theme_override_styles/normal = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n45e2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ehe0")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_play_button_pressed"]

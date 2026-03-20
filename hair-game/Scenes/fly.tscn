@@ -5,14 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cto6eneki14v0" path="res://Assets/fly.png" id="2_3o03e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6cv6t"]
-radius = 3.1622777
+radius = 19.249125
 
 [node name="Fly" type="CharacterBody2D" unique_id=1502015250 groups=["enemy"]]
 collision_mask = 3
 script = ExtResource("1_3o03e")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1392128246]
-scale = Vector2(0.20754713, 0.20754717)
 texture = ExtResource("2_3o03e")
 
 [node name="KillZone" parent="." unique_id=2060245069 instance=ExtResource("1_qarim")]
@@ -27,5 +26,5 @@ wait_time = 2.0
 
 [node name="DropTimer" type="Timer" parent="." unique_id=1132620306]
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]

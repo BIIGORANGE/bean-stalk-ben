@@ -1,28 +1,24 @@
-extends Node
+extends Node2D
 
-@onready var restart_timer: Timer = $RestartTimer
-@onready var spawn_timer: Timer = $SpawnTimer
+@onready var round_timer: Timer = $RoundTimer
+@onready var label: Label = $RoundTimer/Label
+@onready var total_time_in_seconds:int = 0
 
-@onready var fly = preload("res://Scenes/fly.tscn")
 
-func spawn_fly():
-	var instance = fly.instantiate()
-	add_child(instance)
-	
-func start_spawn():
-	spawn_timer.start()
-	
-func _on_spawn_timer_timeout() -> void:
-	spawn_fly()
-	
-func restart_game():
-	Engine.time_scale = 0.2
-	restart_timer.start()
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	round_timer.start()
 
-func _on_timer_timeout() -> void:
-	get_tree().reload_current_scene()
-	Engine.time_scale = 1
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_round_timer_timeout() -> void:
+	print(total_time_in_seconds)
+	total_time_in_seconds += 1
+	var minutes = int(total_time_in_seconds/60)
+	var seconds = total_time_in_seconds - (minutes * 60)
 	
-#runs once at game start
-func _ready():
-	start_spawn()
+	
+	
+	label.text = '%02d:%02d' % [minutes,seconds]

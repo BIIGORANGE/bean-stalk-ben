@@ -1,18 +1,33 @@
 [gd_scene format=3 uid="uid://cf0mlbin7srfu"]
 
 [ext_resource type="PackedScene" uid="uid://dnrespatkrum5" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b7nlpu6a1nirr" path="res://Scenes/main.gd" id="1_jjvhh"]
 [ext_resource type="Script" uid="uid://4l5slk7rda82" path="res://Scripts/game_manager.gd" id="4_jjvhh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjgbg"]
 normal = Vector2(1, 0)
-distance = -382.0
+distance = -3587.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
 normal = Vector2(-1, 0)
-distance = -215.00995
+distance = -14.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
+font_size = 308
+font_color = Color(0.0017380255, 0.56376606, 2.3102762e-06, 1)
+outline_size = 100
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D" unique_id=2106804261]
 position = Vector2(-150, -121)
+script = ExtResource("1_jjvhh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1232886328]
+offset_left = -6071.0
+offset_top = -3418.0
+offset_right = 6111.0
+offset_bottom = 3458.0
+color = Color(0.7259238, 0.69894284, 0.39593565, 1)
 
 [node name="GameManager" type="Node" parent="." unique_id=883448335]
 unique_name_in_owner = true
@@ -25,10 +40,11 @@ wait_time = 0.3
 wait_time = 0.54
 
 [node name="BeetleSpawnTimer" type="Timer" parent="GameManager" unique_id=1364508864]
-wait_time = 2.072
+wait_time = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2093786627]
 position = Vector2(191, 108)
+zoom = Vector2(0.12, 0.12)
 
 [node name="Borders" type="Node" parent="." unique_id=1804375532]
 
@@ -36,14 +52,14 @@ position = Vector2(191, 108)
 position = Vector2(-247, -121)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=1922016043]
-position = Vector2(-288, 0)
+position = Vector2(-1461, 92)
 shape = SubResource("WorldBoundaryShape2D_jjgbg")
 
 [node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=889192180]
 position = Vector2(332, -122)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=156981628]
-position = Vector2(454, 0)
+position = Vector2(5024, 105)
 shape = SubResource("WorldBoundaryShape2D_bo1nx")
 
 [node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=753493147]
@@ -51,21 +67,35 @@ position = Vector2(35, -176)
 rotation = -1.5699594
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=1616808717]
-position = Vector2(160.99994, -0.13474485)
+position = Vector2(2820.9941, -8.360962)
 shape = SubResource("WorldBoundaryShape2D_bo1nx")
 
-[node name="BottomBorder" type="StaticBody2D" parent="Borders/TopBorder" unique_id=2127226653]
-position = Vector2(-323.99902, 1.271166)
-rotation = 3.1394768
+[node name="BottomBorder" type="StaticBody2D" parent="Borders" unique_id=2127226653]
+position = Vector2(36.000004, 147.99997)
+rotation = 1.5695174
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder/BottomBorder" unique_id=1271230540]
-position = Vector2(162.99991, 0.20846933)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BottomBorder" unique_id=1271230540]
+position = Vector2(2823.094, -71.389465)
 shape = SubResource("WorldBoundaryShape2D_bo1nx")
 
 [node name="Player" parent="." unique_id=1167191834 instance=ExtResource("1_jjgbg")]
 unique_name_in_owner = true
-speed = 200
+
+[node name="RoundTimer" type="Timer" parent="." unique_id=1070129209]
+
+[node name="Label" type="Label" parent="RoundTimer" unique_id=1399444481]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 3315.0
+offset_top = -2859.0
+offset_right = 4483.0
+offset_bottom = -2329.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_jjvhh")
 
 [connection signal="timeout" from="GameManager/RestartTimer" to="GameManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameManager/FlySpawnTimer" to="GameManager" method="_on_fly_spawn_timer_timeout"]
 [connection signal="timeout" from="GameManager/BeetleSpawnTimer" to="GameManager" method="_on_beetle_spawn_timer_timeout"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
